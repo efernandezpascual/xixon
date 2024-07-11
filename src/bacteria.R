@@ -1,6 +1,6 @@
 library(tidyverse)
 
-read.csv("data/bacteria/Table3/table_after_filtering.csv", sep = "\t", 
+read.csv("data/bacteria-original.csv", sep = "\t", 
          #fileEncoding = "latin1", 
          skip = 1) %>%
   separate(taxonomy, into = c("kingdom", "phylum", "class", "order", "family", "genus", "species"), sep = "; ") %>%

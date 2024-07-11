@@ -1,36 +1,31 @@
-id,date,habitat,longitude,latitude,surface_m2,slope_degrees,aspect,vegetation_percent,mosses_percent,soil_percent,rocks_percent,litter_percent,canopy_percent,municipality,district,neighborhood ,site
-Xixon01,2023-06-02,N4A,-5.6527083,43.5210433,16,0,-,95,0,5,0,0,0,Xixón,Xixón Este,Viesques,La Coría
-Xixon02,2023-06-02,N2,-5.6108566,43.526875,16,0,-,99,0,1,0,0,0,Xixón,Rural Este,Cabueñes,Av. De la Pecuaria
-Xixon03,2023-06-05,N1,-5.621742,43.519328,16,0,-,60,0,0,0,40,70,Xixón,Rural Este,Cabueñes,Carbayera del Tragamón
-Xixon04,2023-06-05,N2,-5.6868283,43.5262233,16,0,-,95,1,3,1,0,0,Xixón,Xixón Sur,La Peral,cerca de Prau
-Xixon05,2023-06-05,N4A,-5.6845966,43.5277549,16,0,-,100,0,0,0,0,0,Xixón,Xixón Sur,La Peral,Les Maravilles
-Xixon06,2023-06-07,N4B,-5.7044116,43.5416766,16,15,S,95,0,0,5,0,0,Xixón,Xixón Oeste,La Calzada,vías de tren cerca del parking C. de Martín / C. Cardona
-Xixon07,2023-06-07,N2,-5.67152216,43.5402699,16,3,NO,100,0,0,0,0,0,Xixón,Rural Oeste,Xove,detrás del cementerio municipal de Xove
-Xixon08,2023-06-07,N4A,-5.7078899,43.5366616,16,0,-,95,0,5,0,0,0,Xixón,Xixón Oeste,La Calzada,C. de Editor Silveiro Cañada esq. C. Solar
-Xixon09,2023-06-08,N4A,-5.6665433,43.5116366,16,0,-,100,0,0,0,0,0,Xixón,Xixón Sur,Nuevo Roces,cerca de la rotonda Pza. Braña
-Xixon10,2023-06-08,N2,-5.66056,43.5134416,16,0,-,100,0,0,0,0,0,Xixón,Xixón Sur,Nuevo Roces,frente del parking de Campos de Braña Sur
-Xixon11,2023-06-08,N4B,-5.6589999,43.5146849,16,1,O,80,5,0,15,0,0,Xixón,Xixón Sur,Nuevo Roces,Crtra. Ceares cruce A8
-Xixon12,2023-06-12,N3,-5.63355,43.5380066,16,0,-,100,0,0,0,0,0,Xixón,Xixón Este,La Guía,Muséu del Pueblu d'Asturies
-Xixon13,2023-06-12,N4A,-5.634155,43.5389916,16,0,-,95,0,0,5,0,0,Xixón,Xixón Este,La Guía,detrás del Muséu del Pueblu d'Asturies
-Xixon14,2023-06-12,N2,-5.605125,43.5384433,16,1,NNE,100,0,0,0,0,0,Xixón,Rural Este,Somió,parcela rústica en l’Infanzón
-Xixon15,2023-06-14,N4B,-5.6330849,43.5199549,16,3,NE,90,9,0,1,0,0,Xixón,Rural Este,Castiello Bernueces,cuneta Crtra. Castiello / A8
-Xixon16,2023-06-14,N4B,-5.6883333,43.5111366,16,10,SE,60,5,0,5,30,0,Xixón,Xixón Sur,Porceyo,"cuneta al lado del parking de Lidl, Av. De Oviedo"
-Xixon17,2023-06-14,N4B,-5.6763033,43.5286216,16,20,NE,90,5,5,0,0,0,Xixón,Xixón Sur,El Polígono,cuneta Avda. de Gaspar García Laviana / Av. Ppe. de Asturias/ cruce Av. de Constitución
-Xixon18,2023-06-14,N3,-5.6762466,43.5292116,16,0,-,100,0,0,0,0,0,Xixón,Xixón Sur,El Polígono,parque infantil Puerto de Piedrafita
-Xixon19,2023-06-19,N4C,-5.6571783,43.523325,16,0,-,60,15,13,2,0,0,Xixón,Xixón Este,Ciares,Cerámica Gijonesa
-Xixon20,2023-06-19,N4C,-5.67807,43.5405733,16,0,-,70,15,10,5,0,0,Xixón,Xixón Oeste,El Natahoyo,Naval Xixón
-Xixon21,2023-06-19,N4C,-5.7154383,43.5361933,16,0,-,70,5,20,5,0,0,Xixón,Rural Oeste,Veriña,C/ Manuel Vigil Montoto; cerca de la gasolinera La Estrella de Qatar
-Xixon22,2023-06-21,N4C,-5.7091966,43.5395483,16,0,-,60,10,0,30,0,0,Xixón,Xixón Oeste,La Calzada,C/ Berto Turullo esq. C/ Pololo
-Xixon23,2023-06-21,N4C,-5.7161683,43.5225483,16,0,-,70,5,20,5,0,0,Xixón,Rural Oeste,Tremañes,"C/ Joaquín Alonso Díaz, cerca de la gasolinera La Lloreda"
-Xixon24,2023-06-21,N1,-5.7129633,43.5065433,16,25,SSE,40,15,5,0,40,70,Xixón,Rural Oeste,Porceyo,bosque mixto entre Porceyo y Sotiello
-Xixon25,2023-06-22,N3,-5.7015466,43.5425516,16,0,-,90,0,10,0,0,0,Xixón,Xixón Oeste,La Calzada,"Parque El Lauredal, C/ Manuel Rodríguez Álvarez"
-Xixon26,2023-06-22,N3,-5.66235,43.5216383,16,0,-,95,0,5,0,0,0,Xixón,Xixón Este,Ciares,"Parque de Los Pericones, Avda. del Llano"
-Xixon27,2023-06-22,N3,-5.64363,43.526495,16,0,-,100,0,0,0,0,0,Xixón,Xixón Este,Viesques,Parque Fluvial - Viñao
-Xixon28,2023-06-23,N1,-5.6539733,43.512005,16,0,-,80,0,15,0,0,60,Xixón,Rural Este,Granda,"bosque en el Parque de la Senda Verda, Humedal Ornitológico"
-Xixon29,2023-06-23,N1,-5.6539733,43.512005,16,0,-,60,0,5,0,25,90,Xixón,Rural Sur,Mareo,bosque mixto en Roces-Sur / Mareo
-Xixon30,2023-06-23,N1,-5.7648466,43.4975566,16,25,SE,80,1,10,0,9,90,Xixón,Rural Sur,San Andrés,bosque cerca del Embalse San Andrés de los Tacones
-Xixon31,2023-06-28,N4D,-5.705158,43.539377,16,90,SO,20,5,0,75,0,0,Xixón,Xixón Oeste,La Calzada,"muro vertical de ladrillos (""el horno""), c/ Gran Capitán esq. c/ Alejandro Farnesio"
-Xixon32,2023-06-28,N4D,-5.70062,43.5354283,16,0,-,5,0,1,94,0,0,Xixón,Xixón Oeste,La Calzada,acera C/ José Manuel Palacio Álvarez; cerca del Punto Limpo
-Xixon33,2023-06-28,N4D,-5.6517149,43.52564,16,5,SE,10,0,1,89,0,0,Xixón,Xixón Este,Viesques,calle peatonal paralela a la c/ Aurelio Mnéndez y c/ Poeta José Hierro
-Xixon34,2023-06-28,N4D,-5.6342316,43.5364683,16,0,-,5,0,0,90,5,0,Xixón,Xixón Este,La Guía,escaleras (3 escalones) acceso Palacio de Deportes
-Xixon35,2023-06-28,N4D,-5.6157416,43.521615,16,0,-,15,15,0,70,0,0,Xixón,Rural Este,Cabueñes,"parking con adoquines, entraba principal JBA"
+id,date,habitat,longitude,latitude,surface_m2,slope_degrees,aspect,vegetation_percent,mosses_percent,soil_percent,rocks_percent,litter_percent,canopy_percent
+Xixon01,02/06/2023,residential,-5.6527083,43.5210433,16,0,-,95,0,5,0,0,0
+Xixon02,02/06/2023,meadow,-5.6108566,43.526875,16,0,-,99,0,1,0,0,0
+Xixon03,05/06/2023,forest,-5.621742,43.519328,16,0,-,60,0,0,0,40,70
+Xixon04,05/06/2023,meadow,-5.6868283,43.5262233,16,0,-,95,1,3,1,0,0
+Xixon05,05/06/2023,residential,-5.6845966,43.5277549,16,0,-,100,0,0,0,0,0
+Xixon06,07/06/2023,roadside,-5.7044116,43.5416766,16,15,S,95,0,0,5,0,0
+Xixon07,07/06/2023,meadow,-5.67152216,43.5402699,16,3,NO,100,0,0,0,0,0
+Xixon08,07/06/2023,residential,-5.7078899,43.5366616,16,0,-,95,0,5,0,0,0
+Xixon09,08/06/2023,residential,-5.6665433,43.5116366,16,0,-,100,0,0,0,0,0
+Xixon10,08/06/2023,meadow,-5.66056,43.5134416,16,0,-,100,0,0,0,0,0
+Xixon11,08/06/2023,roadside,-5.6589999,43.5146849,16,1,O,80,5,0,15,0,0
+Xixon12,12/06/2023,park,-5.63355,43.5380066,16,0,-,100,0,0,0,0,0
+Xixon13,12/06/2023,residential,-5.634155,43.5389916,16,0,-,95,0,0,5,0,0
+Xixon14,12/06/2023,meadow,-5.605125,43.5384433,16,1,NNE,100,0,0,0,0,0
+Xixon15,14/06/2023,roadside,-5.6330849,43.5199549,16,3,NE,90,9,0,1,0,0
+Xixon16,14/06/2023,roadside,-5.6883333,43.5111366,16,10,SE,60,5,0,5,30,0
+Xixon17,14/06/2023,roadside,-5.6763033,43.5286216,16,20,NE,90,5,5,0,0,0
+Xixon18,14/06/2023,park,-5.6762466,43.5292116,16,0,-,100,0,0,0,0,0
+Xixon19,19/06/2023,industrial,-5.6571783,43.523325,16,0,-,60,15,13,2,0,0
+Xixon20,19/06/2023,industrial,-5.67807,43.5405733,16,0,-,70,15,10,5,0,0
+Xixon21,19/06/2023,industrial,-5.7154383,43.5361933,16,0,-,70,5,20,5,0,0
+Xixon22,21/06/2023,industrial,-5.7091966,43.5395483,16,0,-,60,10,0,30,0,0
+Xixon23,21/06/2023,industrial,-5.7161683,43.5225483,16,0,-,70,5,20,5,0,0
+Xixon24,21/06/2023,forest,-5.7129633,43.5065433,16,25,SSE,40,15,5,0,40,70
+Xixon25,22/06/2023,park,-5.7015466,43.5425516,16,0,-,90,0,10,0,0,0
+Xixon26,22/06/2023,park,-5.66235,43.5216383,16,0,-,95,0,5,0,0,0
+Xixon27,22/06/2023,park,-5.64363,43.526495,16,0,-,100,0,0,0,0,0
+Xixon28,23/06/2023,forest,-5.6539733,43.512005,16,0,-,80,0,15,0,0,60
+Xixon29,23/06/2023,forest,-5.6539733,43.512005,16,0,-,60,0,5,0,25,90
+Xixon30,23/06/2023,forest,-5.7648466,43.4975566,16,25,SE,80,1,10,0,9,90
