@@ -1,5 +1,7 @@
 library(tidyverse)
 
+### Clean fungi
+
 read.csv("data/fungi-original.csv", sep = "\t", 
          #fileEncoding = "latin1", 
          skip = 1) %>%
@@ -44,46 +46,122 @@ read.csv("data/fungi-original.csv", sep = "\t",
          Xixon29 = X29.ITS,
          Xixon30 = X30.ITS) -> fungi
 
-fungi %>% filter(is.na(kingdom))
-fungi %>% filter(is.na(phylum))
-fungi %>% filter(is.na(class))
-fungi %>% filter(is.na(order))
-fungi %>% filter(is.na(family))
-fungi %>% filter(is.na(genus))
+### Fungi numbers
 
-fungi %>% pull(kingdom) %>% na.omit %>% unique -> kingdoms 
-fungi %>% pull(phylum) %>% na.omit %>% unique -> phyla 
-fungi %>% pull(class) %>% na.omit %>% unique -> classes 
-fungi %>% pull(order) %>% na.omit %>% unique -> orders 
-fungi %>% pull(family) %>% na.omit %>% unique -> families 
-fungi %>% pull(genus) %>% na.omit %>% unique -> genera  
-fungi %>% select(species) %>% filter(species != "unidentified") %>% arrange(species) %>% na.omit %>% unique -> spp  
+fungi %>% group_by(ASV)
 
-fungi %>%
-  select(kingdom:species) %>%
+fungi %>% filter(species != "unidentified" & !is.na(species)) %>% group_by(ASV)
+fungi %>% filter(species != "unidentified" & !is.na(species)) %>% group_by(ASV) %>% pull(species) %>% unique %>% length
+
+fungi %>% filter(species == "unidentified" | is.na(species)) %>% 
+  filter(genus != "unidentified" & !is.na(genus)) %>% group_by(ASV)
+fungi %>% filter(species == "unidentified" | is.na(species)) %>% 
+  filter(genus != "unidentified" & !is.na(genus)) %>% group_by(ASV) %>%
+  pull(genus) %>% unique %>% length
+
+fungi %>% 
+  filter(species != "unidentified" & !is.na(species)) %>%
+  select(species, Xixon01:Xixon09) %>%
+  gather(id, Value, -species) %>%
+  filter(Value != 0) %>%
+  select(species, id) %>%
   unique %>%
-  arrange(kingdom, phylum, class, order, family, genus, species) %>%
-  write.csv("results/fungi-taxa.csv", row.names = FALSE, fileEncoding = "latin1")
+  group_by(species) %>%
+  tally() %>%
+  arrange(-n)
 
-fungi %>% pull(ASV) %>% unique %>% length
+fungi %>% 
+  filter(genus != "unidentified" & !is.na(genus)) %>%
+  select(genus, Xixon01:Xixon09) %>%
+  gather(id, Value, -genus) %>%
+  filter(Value != 0) %>%
+  select(genus, id) %>%
+  unique %>%
+  group_by(genus) %>%
+  tally() %>%
+  arrange(-n)
+
+fungi %>% filter(phylum != "unidentified" & !is.na(phylum)) %>% group_by(ASV)
+fungi %>% filter(phylum != "unidentified" & !is.na(phylum)) %>% group_by(ASV) %>% pull(phylum) %>% unique 
+fungi %>% group_by(phylum) %>% tally %>% mutate(n = n/4679) %>% arrange(-n)
+
+fungi %>% 
+  filter(phylum != "unidentified" & !is.na(phylum)) %>%
+  select(phylum, Xixon01:Xixon09) %>%
+  gather(id, Value, -phylum) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(habitat, phylum) %>%
+  tally() %>%
+  arrange(-n) %>%
+  group_by(habitat) %>%
+  mutate(n = n/sum(n)) %>%
+  spread(habitat, n)
 
 fungi %>%
-  filter(! is.na(species)) %>%
-  filter(species != "unidentified") %>%
-  pull(ASV) %>% unique %>% length
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  pull(n) %>% mean
 
 fungi %>%
-  filter(! is.na(genus)) %>%
-  filter(genus != "unidentified") %>%
-  pull(ASV) %>% unique %>% length
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  pull(n) %>% max
 
 fungi %>%
-  select(ASV, species, Xixon01:Xixon09) %>%
-  gather(id, cover, Xixon01:Xixon09) %>%
-  group_by(species, id) %>%
-  summarise(cover = sum(cover)) %>%
-  na.omit %>%
-  filter(species != "unidentified") %>%
-  filter(cover != 0) %>%
-  rename(taxon = species) %>%
-  write.csv("data/fungi-species.csv", row.names = FALSE, fileEncoding = "latin1")
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  pull(n) %>% min
+
+fungi %>%
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  group_by(habitat) %>% 
+  summarise(n = mean(n)) %>%
+  arrange(-n)
+
+### ASV matrix
+
+fungi %>%
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  mutate(Value = 1) %>%
+  spread(ASV, Value, fill = 0) -> asvmatrix
+
+### Permanova
+
+header %>%
+  select(id, habitat) %>%
+  merge(asvmatrix) -> datos
+
+datos %>% select(-c(id, habitat)) -> df1
+
+RVAideMemoire::pairwise.perm.manova(dist(df1, "euclidian"), datos$habitat, nperm = 1000000, p.method = "holm") -> pairperma
+vegan::adonis2(df1 ~ habitat, data = datos, permutations = 100000) -> perma
+anova(betadisper(vegdist(df1, method = "euclidean"), df1b$Alliance)) -> betadis
+
+### Save fungi
+
+fungi %>%
+  gather(id, value, Xixon01:Xixon09) %>%
+  filter(value != 0) %>%
+  mutate(presence = 1) %>%
+  write.csv("data/fungi.csv", row.names = FALSE, fileEncoding = "latin1")
+  

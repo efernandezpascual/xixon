@@ -1,19 +1,17 @@
 library(tidyverse)
 
-read.csv("data/header.csv", fileEncoding = "latin1") %>%
-  filter(habitat != "N4D") -> header
-read.csv("data/species.csv", fileEncoding = "latin1") %>% group_by(id, taxon) %>%
-  summarise(cover = sum(cover_percent)) -> # merge layers
-  species
-read.csv("data/fungi-species.csv", fileEncoding = "latin1") -> fungi
-read.csv("data/bacteria-species.csv", fileEncoding = "latin1") -> bacteria
+read.csv("data/header.csv", fileEncoding = "latin1") -> header
+read.csv("data/plants.csv", fileEncoding = "latin1") -> plants
+read.csv("data/fungi.csv", fileEncoding = "latin1") -> fungi
+read.csv("data/bacteria.csv", fileEncoding = "latin1") -> bacteria
+read.csv("data/soils.csv", fileEncoding = "latin1") -> soils
 
 ### Compositional novelty for plants
 
 header %>%
   select(habitat, id) %>%
   filter(habitat != "N4D") %>%
-  merge(species) %>%
+  merge(plants) %>%
   select(id, taxon, cover) %>%
   spread(taxon, cover, fill = 0) %>%
   column_to_rownames(var = "id") -> matrix 
@@ -30,38 +28,35 @@ vegan::scores(nmds, "sites") %>%
   gather(Trait, Value, - id) %>%
   merge(select(header, id, habitat)) -> sitescores
 
-### Novelty (versus N1)
+### Novelty (versus forest)
 
 sitescores %>%
-  filter(habitat %in% c("N1")) %>%
+  filter(habitat %in% c("forest")) %>%
   group_by(habitat, Trait) %>%
   summarise(Value = mean(Value)) %>%
   spread(habitat, Value) %>%
   merge(sitescores) %>%
-  mutate(Novelty = N1 - Value) %>%
+  mutate(Novelty = forest - Value) %>%
   group_by(id, habitat) %>%
-  summarise(CPN1 = sum(abs(Novelty)))  -> cpn1
+  summarise(plant.forest = sum(abs(Novelty)))  -> plant.forest
 
-### Novelty (versus N2)
+### Novelty (versus meadow)
 
 sitescores %>%
-  filter(habitat %in% c("N2")) %>%
+  filter(habitat %in% c("meadow")) %>%
   group_by(habitat, Trait) %>%
   summarise(Value = mean(Value)) %>%
   spread(habitat, Value) %>%
   merge(sitescores) %>%
-  mutate(Novelty = N2 - Value) %>%
+  mutate(Novelty = meadow - Value) %>%
   group_by(id, habitat) %>%
-  summarise(CPN2 = sum(abs(Novelty))) -> cpn2
+  summarise(plant.meadow = sum(abs(Novelty))) -> plant.meadow
 
 ### Compositional novelty for fungi
 
-header %>%
-  select(habitat, id) %>%
-  filter(habitat != "N4D") %>%
-  merge(fungi) %>%
-  select(id, taxon, cover) %>%
-  spread(taxon, cover, fill = 0) %>%
+fungi %>%
+  select(id, ASV, presence) %>%
+  spread(ASV, presence, fill = 0) %>%
   column_to_rownames(var = "id") -> matrix 
 
 matrix %>%
@@ -76,38 +71,35 @@ vegan::scores(nmds, "sites") %>%
   gather(Trait, Value, - id) %>%
   merge(select(header, id, habitat)) -> sitescores
 
-### Novelty (versus N1)
+### Novelty (versus forest)
 
 sitescores %>%
-  filter(habitat %in% c("N1")) %>%
+  filter(habitat %in% c("forest")) %>%
   group_by(habitat, Trait) %>%
   summarise(Value = mean(Value)) %>%
   spread(habitat, Value) %>%
   merge(sitescores) %>%
-  mutate(Novelty = N1 - Value) %>%
+  mutate(Novelty = forest - Value) %>%
   group_by(id, habitat) %>%
-  summarise(CFN1 = sum(abs(Novelty))) -> cfn1
+  summarise(fungi.forest = sum(abs(Novelty))) -> fungi.forest
 
-### Novelty (versus N2)
+### Novelty (versus meadow)
 
 sitescores %>%
-  filter(habitat %in% c("N2")) %>%
+  filter(habitat %in% c("meadow")) %>%
   group_by(habitat, Trait) %>%
   summarise(Value = mean(Value)) %>%
   spread(habitat, Value) %>%
   merge(sitescores) %>%
-  mutate(Novelty = N2 - Value) %>%
+  mutate(Novelty = meadow - Value) %>%
   group_by(id, habitat) %>%
-  summarise(CFN2 = sum(abs(Novelty))) -> cfn2
+  summarise(fungi.meadow = sum(abs(Novelty))) -> fungi.meadow
 
 ### Compositional novelty for bacteria
 
-header %>%
-  select(habitat, id) %>%
-  filter(habitat != "N4D") %>%
-  merge(bacteria) %>%
-  select(id, taxon, cover) %>%
-  spread(taxon, cover, fill = 0) %>%
+bacteria %>%
+  select(id, ASV, presence) %>%
+  spread(ASV, presence, fill = 0) %>%
   column_to_rownames(var = "id") -> matrix 
 
 matrix %>%
@@ -122,58 +114,58 @@ vegan::scores(nmds, "sites") %>%
   gather(Trait, Value, - id) %>%
   merge(select(header, id, habitat)) -> sitescores
 
-### Novelty (versus N1)
+### Novelty (versus forest)
 
 sitescores %>%
-  filter(habitat %in% c("N1")) %>%
+  filter(habitat %in% c("forest")) %>%
   group_by(habitat, Trait) %>%
   summarise(Value = mean(Value)) %>%
   spread(habitat, Value) %>%
   merge(sitescores) %>%
-  mutate(Novelty = N1 - Value) %>%
+  mutate(Novelty = forest - Value) %>%
   group_by(id, habitat) %>%
-  summarise(CBN1 = sum(abs(Novelty))) -> cbn1
+  summarise(bacterial.forest = sum(abs(Novelty))) -> bacterial.forest
 
-### Novelty (versus N2)
+### Novelty (versus meadow)
 
 sitescores %>%
-  filter(habitat %in% c("N2")) %>%
+  filter(habitat %in% c("meadow")) %>%
   group_by(habitat, Trait) %>%
   summarise(Value = mean(Value)) %>%
   spread(habitat, Value) %>%
   merge(sitescores) %>%
-  mutate(Novelty = N2 - Value) %>%
+  mutate(Novelty = meadow - Value) %>%
   group_by(id, habitat) %>%
-  summarise(CBN2 = sum(abs(Novelty)))  -> cbn2
+  summarise(bacterial.meadow = sum(abs(Novelty)))  -> bacterial.meadow
 
 ### Merge novelty
 
 header %>%
   select(id, habitat) %>%
-  merge(cpn1) %>%
-  merge(cpn2) %>%
-  merge(cfn1) %>%
-  merge(cfn2) %>%
-  merge(cbn1) %>%
-  merge(cbn2) %>%
-  filter(! habitat %in% c("N1", "N2")) -> novelty
+  merge(plant.forest) %>%
+  merge(plant.meadow) %>%
+  merge(fungi.forest) %>%
+  merge(fungi.meadow) %>%
+  merge(bacterial.forest) %>%
+  merge(bacterial.meadow) %>%
+  filter(! habitat %in% c("forest", "meadow")) -> novelty
 
 novelty %>% 
   select(-c(id, habitat)) %>% cor
 
 novelty %>%
   gather(Trait, Novelty, -c(id, habitat)) %>%
-  mutate(Trait = fct_relevel(Trait, "CBN1", "CFN1", "CPN1", "CBN2", "CFN2", "CPN2")) %>%
-  mutate(Trait = fct_relevel(Trait, "CBN1", "CBN2", "CFN1", "CFN2", "CPN1", "CPN2")) %>%
-  mutate(Trait = fct_recode(Trait, "(A) Bacterial\n      novelty\n      vs. forests" = "CBN1",
-                           "(C) Fungal\n      novelty\n      vs. forests" = "CFN1",
-                           "(E) Plant\n      novelty\n      vs. forests" = "CPN1",
-                           "(B) Bacterial\n      novelty\n      vs. meadows" = "CBN2",
-                           "(D) Fungal\n      novelty\n      vs. meadows" = "CFN2",
-                           "(F) Plant\n      novelty\n      vs. meadows" = "CPN2",)) %>%
-  mutate(habitat = fct_relevel(habitat, "N3", "N4B", "N4A", "N4C")) %>%
-  mutate(habitat = fct_recode(habitat, "Parks" = "N3", "Roadsides" = "N4B",
-                              "Residential" = "N4A", "Industrial" = "N4C")) %>%
+  mutate(Trait = fct_relevel(Trait, "plant.forest", "plant.meadow", "fungi.forest", "fungi.meadow", "bacterial.forest", "bacterial.meadow")) %>%
+  mutate(Trait = fct_recode(Trait, "(E) Bacterial\n      novelty\n      vs. forests" = "bacterial.forest",
+                           "(C) Fungal\n      novelty\n      vs. forests" = "fungi.forest",
+                           "(A) Plant\n      novelty\n      vs. forests" = "plant.forest",
+                           "(F) Bacterial\n      novelty\n      vs. meadows" = "bacterial.meadow",
+                           "(D) Fungal\n      novelty\n      vs. meadows" = "fungi.meadow",
+                           "(B) Plant\n      novelty\n      vs. meadows" = "plant.meadow",)) %>%
+  mutate(habitat = fct_relevel(habitat, "forest", "meadow", "park", "roadside", "residential", "industrial")) %>%
+  mutate(habitat = fct_recode(habitat, "Forests" = "forest", "Meadows" = "meadow",
+                              "Parks" = "park", "Roadsides" = "roadside",
+                              "Residential" = "residential", "Industrial" = "industrial"))%>%
   ggplot(aes(habitat, Novelty, fill = habitat)) +
   geom_boxplot() +
   facet_wrap( ~ Trait, nrow = 1)+
@@ -201,12 +193,12 @@ novelty %>%
         axis.text.x = element_text(size = 10, color = "black", angle = 45, vjust = 1, hjust=1),
         axis.text.y = element_text(size = 10, color = "black"),
         plot.margin = unit(c(0.1,0.1,0.1,0.1), "cm")) +
-  geom_hline(yintercept = 0, linetype = "dashed") -> F3; F3
+  geom_hline(yintercept = 0, linetype = "dashed") -> F4; F4
 
-ggsave(F3, file = "results/figures/Fig3.png", bg = "white", 
+ggsave(F4, file = "results/figures/Fig4.png", bg = "white", 
        path = NULL, scale = 1, width = 180, height = 75, units = "mm", dpi = 600)
 
-### Test
+### Correlation
 
 get_lower_tri<-function(cormat){
   cormat[upper.tri(cormat)] <- NA
@@ -214,9 +206,9 @@ get_lower_tri<-function(cormat){
 }
 
 read.csv("data/soils.csv", fileEncoding = "latin1") %>%
-  select(id, OM, Pb) %>%
+  select(id, OM, Pb, Mg) %>%
   merge(novelty) %>% 
-  select(OM, Pb, CPN1:CBN2) %>%
+  select(OM, Pb, Mg, plant.forest:bacterial.meadow) %>%
   cor() %>% 
   round(1) %>%
   get_lower_tri() %>%
@@ -253,53 +245,50 @@ read.csv("data/soils.csv", fileEncoding = "latin1") %>%
         plot.margin = unit(c(0.1,0.1,0.1,0.1), "cm")) +
   coord_fixed() -> FS2; FS2
 
+### Model
+
 read.csv("data/soils.csv", fileEncoding = "latin1") %>%
-  select(id, OM, Pb) %>%
-  merge(novelty) -> df1
-
-lm(CBN1 ~ habitat + OM + Pb, data = df1) -> m1
-summary(m1)
-
-lm(CBN2 ~ habitat + OM + Pb, data = df1) -> m2
-summary(m2)
-
-lm(CFN1 ~ habitat + OM + Pb, data = df1) -> m3
-summary(m3)
-
-lm(CFN2 ~ habitat + OM + Pb, data = df1) -> m4
-summary(m4)
-
-lm(CPN1 ~ habitat + OM + Pb, data = df1) -> m5
-summary(m5)
-
-lm(CPN2 ~ habitat + OM + Pb, data = df1) -> m6
-summary(m6)
-
-
-
-lm(CBN1 ~  OM + Pb, data = df1) -> m1
-summary(m1)
-
-lm(CBN2 ~ OM + Pb, data = df1) -> m2
-summary(m2)
-
-lm(CFN1 ~ OM + Pb, data = df1) -> m3
-summary(m3)
-
-lm(CFN2 ~  OM + Pb, data = df1) -> m4
-summary(m4)
-
-lm(CPN1 ~  OM + Pb, data = df1) -> m5
-summary(m5)
-
-lm(CPN2 ~  OM + Pb, data = df1) -> m6
-summary(m6)
-
-df1 %>%
-  gather(Trait, Value, CPN1:CBN2) %>%
+  select(id, OM, Pb, Mg) %>%
+  merge(novelty)  %>%
+  gather(Trait, Value, plant.forest:bacterial.meadow) %>%
   separate(Trait,  
           into = c("Group", "Reference"),
-          sep = 2) -> df2
+          sep = "\\.") -> df1
 
-nlme::lme(Value ~ Group + Reference  + OM + Pb,  random=~1 | habitat, data = df2) -> m1
+df1 %>% head
+
+df1 %>%
+  group_by(habitat) %>%
+  summarise(m = mean(Value), se = sd(Value)/sqrt(5))
+
+df1 %>%
+  group_by(Group) %>%
+  summarise(m = mean(Value), se = sd(Value)/sqrt(5))
+
+df1 %>%
+  group_by(Reference) %>%
+  summarise(m = mean(Value), se = sd(Value)/sqrt(5))
+
+nlme::lme(Value ~ Group + Reference + habitat + OM + Pb + Mg,  random=~1 | id, data = df1) -> m1
 summary(m1)
+nlme::anova.lme(m1)
+
+nlme::lme(Value ~ Group + Reference + habitat, random=~1 | id, data = df1) -> m2
+summary(m2)
+nlme::anova.lme(m2)
+
+lm(Value ~ Group + Reference + habitat, data = df1) -> m3
+summary(m3)
+anova(m3)
+
+lm(Value ~ Group, data = df1) -> m3
+summary(m3)
+anova(m3)
+
+lm(Value ~ Reference, data = df1) -> m3
+summary(m3)
+anova(m3)
+
+lm(Value ~ habitat, data = df1) -> m3
+summary(m3)
+anova(m3)

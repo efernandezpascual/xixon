@@ -44,34 +44,136 @@ read.csv("data/bacteria-original.csv", sep = "\t",
          Xixon29 = X29.16S,
          Xixon30 = X30.16S) -> bacteria
 
-bacteria %>% filter(is.na(kingdom))
-bacteria %>% filter(is.na(phylum))
-bacteria %>% filter(is.na(class))
-bacteria %>% filter(is.na(order))
-bacteria %>% filter(is.na(family))
-bacteria %>% filter(is.na(genus))
+### numbers
 
-bacteria %>% pull(kingdom) %>% na.omit %>% unique -> kingdoms 
-bacteria %>% pull(phylum) %>% na.omit %>% unique -> phyla 
-bacteria %>% pull(class) %>% na.omit %>% unique -> classes 
-bacteria %>% pull(order) %>% na.omit %>% unique -> orders 
-bacteria %>% pull(family) %>% na.omit %>% unique -> families 
-bacteria %>% pull(genus) %>% na.omit %>% unique -> genera  
-bacteria %>% select(species) %>% filter(species != "unidentified") %>% arrange(species) %>% na.omit %>% unique -> spp  
+bacteria %>% group_by(ASV)
 
-bacteria %>%
-  select(kingdom:species) %>%
+bacteria %>% filter(species != "unidentified" & !is.na(species)) %>% group_by(ASV)
+bacteria %>% filter(species != "unidentified" & !is.na(species)) %>% group_by(ASV) %>% pull(species) %>% unique %>% length
+
+bacteria %>% filter(species == "unidentified" | is.na(species)) %>% 
+  filter(genus != "unidentified" & !is.na(genus)) %>% group_by(ASV)
+bacteria %>% filter(species == "unidentified" | is.na(species)) %>% 
+  filter(genus != "unidentified" & !is.na(genus)) %>% group_by(ASV) %>%
+  pull(genus) %>% unique %>% length
+
+bacteria %>% 
+  filter(species != "unidentified" & !is.na(species)) %>%
+  select(species, Xixon01:Xixon09) %>%
+  gather(id, Value, -species) %>%
+  filter(Value != 0) %>%
+  select(species, id) %>%
   unique %>%
-  arrange(kingdom, phylum, class, order, family, genus, species) %>%
-  write.csv("results/bacteria-taxa.csv", row.names = FALSE, fileEncoding = "latin1")
+  group_by(species) %>%
+  tally() %>%
+  arrange(-n)%>%
+  print(n = 100)
+
+bacteria %>% 
+  filter(genus != "unidentified" & !is.na(genus)) %>%
+  select(genus, Xixon01:Xixon09) %>%
+  gather(id, Value, -genus) %>%
+  filter(Value != 0) %>%
+  select(genus, id) %>%
+  unique %>%
+  group_by(genus) %>%
+  tally() %>%
+  arrange(-n) %>%
+  print(n = 100)
+
+bacteria %>% 
+  filter(family != "unidentified" & !is.na(family)) %>%
+  select(family, Xixon01:Xixon09) %>%
+  gather(id, Value, -family) %>%
+  filter(Value != 0) %>%
+  select(family, id) %>%
+  unique %>%
+  group_by(family) %>%
+  tally() %>%
+  arrange(-n) %>%
+  print(n = 100)
+
+bacteria %>% filter(phylum != "unidentified" & !is.na(phylum)) %>% group_by(ASV)
+bacteria %>% filter(phylum != "unidentified" & !is.na(phylum)) %>% group_by(ASV) %>% pull(phylum) %>% unique 
+bacteria %>% group_by(phylum) %>% tally %>% mutate(n = n/16306) %>% arrange(-n)
+
+bacteria %>% 
+  filter(phylum != "unidentified" & !is.na(phylum)) %>%
+  select(phylum, Xixon01:Xixon09) %>%
+  gather(id, Value, -phylum) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(habitat, phylum) %>%
+  tally() %>%
+  arrange(-n) %>%
+  group_by(habitat) %>%
+  mutate(n = n/sum(n)) %>%
+  spread(habitat, n) %>%
+  filter(phylum %in% c("Proteobacteria", "Acidobacteriota", "Actinobacteriota", "Planctomycetota"))
 
 bacteria %>%
-  select(ASV, species, Xixon01:Xixon09) %>%
-  gather(id, cover, Xixon01:Xixon09) %>%
-  group_by(species, id) %>%
-  summarise(cover = sum(cover)) %>%
-  na.omit %>%
-  filter(species != "unidentified") %>%
-  filter(cover != 0) %>%
-  rename(taxon = species) %>%
-  write.csv("data/bacteria-species.csv", row.names = FALSE, fileEncoding = "latin1")
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  pull(n) %>% mean
+
+bacteria %>%
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  pull(n) %>% max
+
+bacteria %>%
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  pull(n) %>% min
+
+bacteria %>%
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  merge(header) %>%
+  group_by(id, habitat) %>%
+  summarise(n = length(ASV)) %>%
+  group_by(habitat) %>% 
+  summarise(n = mean(n)) %>%
+  arrange(-n)
+
+### ASV matrix
+
+bacteria %>%
+  select(ASV, Xixon01:Xixon09) %>%
+  gather(id, Value, -ASV) %>%
+  filter(Value != 0) %>%
+  mutate(Value = 1) %>%
+  spread(ASV, Value, fill = 0) -> asvmatrix
+
+### Permanova
+
+header %>%
+  select(id, habitat) %>%
+  merge(asvmatrix) -> datos
+
+datos %>% select(-c(id, habitat)) -> df1
+
+RVAideMemoire::pairwise.perm.manova(dist(df1, "euclidian"), datos$habitat, nperm = 1000000, p.method = "holm") -> pairperma
+vegan::adonis2(df1 ~ habitat, data = datos, permutations = 100000) -> perma
+anova(betadisper(vegdist(df1, method = "euclidean"), df1b$Alliance)) -> betadis
+
+### Save bacteria
+
+bacteria %>%
+  gather(id, value, Xixon01:Xixon09) %>%
+  filter(value != 0) %>%
+  mutate(presence = 1) %>%
+  write.csv("data/bacteria.csv", row.names = FALSE, fileEncoding = "latin1")

@@ -350,15 +350,221 @@ non-prokaryotic ASVs such as eukaryotic sequences of plastid
 controls that were more abundant in the negative controls than in the
 samples, indicating contamination ([**RN5547?**](#ref-RN5547)).
 
+*Alpha rarefaction plots*. Alpha rarefaction plots showed that the
+sequencing depth to reach saturation was 30,000 reads for the fungi and
+22,000 reads for the bacteria, above the sequencing depth of all plots
+for fungi (mean = 114,919 reads; min = 79,045; max = 157,110) and
+bacteria (mean = 113,341 reads; min = 84,094; max = 171,404).
+
+> Rarefaction
+
 ## Statistical analysis
+
+- Soil temperature indices as worldclim
+- Soil PCA, correlation, PERMANOVA
+- NMDSs and permanova for plants
+- NMDS and permanova for fungi, bacteria, clarify presence absence and
+  level of analysis
+- enfit
 
 # Results
 
-## Soil temperatures and properties across habitats
+## Soil properties across habitats
 
-## Plant, fungal and bacterial diversity across habitats
+Soil temperature records (**Figure 2A**) indicated that forest soils
+were relatively buffered in their range of variation, with a mean annual
+temperature of 11.4 ºC, a mean diurnal range of 1.72 ºC and an annual
+range of 4.74 ºC. The meadow and urban plots had more thermal
+oscillation, with a mean diurnal range above 4 ºC and an annual range
+above 10 ºC. PCA ordination of the soil physicochemical properties
+(**Appendix S1**) indicated that the first axis of variation, explaining
+23% of the variance, ordered the soils according to their concentration
+of heavy metals. The variables with the highest contribution to this
+axis (\> 10%) were the soil contents in Pb, Cu, Zn, Cd and Cr, which
+accounted for 66% of the variability of the first axis. This first axis
+did not separate urban from non-urban habitats: for example, vacant
+industrial lots had some of the highest concentration in heavy metals,
+but also some of the lowest. Likewise, forest plots were distributed
+across the first axis. The second axis of variation explained 21% of the
+variance and ordered soils according to their compaction and water
+retention capacities, with the highest contributing variables (\> 10%)
+being organic matter content, bulk density, N concentration and pH,
+which made up 59% of the axis’ variability. This axis did separate soils
+according to their habitat: for example, forest sites had high organic
+matter and N content, while industrial vacant lots had higher bulk
+density and pH. The third axis explained 10% of the variability and
+ordered soils according to their content in Mg, with the highest
+contributing variables (\>10%) being Mg content, Mg/K ratio and
+conductivity, together explaining 50% of the axis. In this case, like
+for the first axis, there was no clear separation between habitats, with
+industrial sites having some of the highest and the lowest values.
+Correlation analysis showed strong correlations between the groups of
+variables contributing to the first, second and third axes (**Appendix
+S1**). Therefore, to avoid autocorrelation issues, for further analyses
+we kept the variables Pb content, organic matter content and Mg content
+(**Figure 2B**), which together provided a straightforward biological
+interpretation of patterns in soil composition. Of these values, as
+previously indicated by the PCA, organic matter was the only one with a
+clear pattern of variation: a decrease from the non-urban to the urban
+habitats. A PERMANOVA of the soil values indicated that there was not a
+significant difference between habitats in their soil physicochemical
+properties (100,000 permutations, R<sup>2</sup> = 0.19, F = 1.15, p =
+0.31).
+
+<div class="figure">
+
+<img src="../results/figures/Fig2.png" alt="Boxplot of soil properties accross habitats. (A) Temperatures recorded every hour in one sampling plot per habitat from 1 Jan 2024 to 31 Dec 2024. (B) Soil physicochemical properties. Values are shown for the three most explanatory and uncorrelated variables, as per a previous PCA analysis: soil Pb content, soil organic matter content, and soil Mg content." width="450px" />
+<p class="caption">
+<span id="fig:fig2"></span>Figure 1: Boxplot of soil properties accross
+habitats. (A) Temperatures recorded every hour in one sampling plot per
+habitat from 1 Jan 2024 to 31 Dec 2024. (B) Soil physicochemical
+properties. Values are shown for the three most explanatory and
+uncorrelated variables, as per a previous PCA analysis: soil Pb content,
+soil organic matter content, and soil Mg content.
+</p>
+
+</div>
+
+> Poner unidades de las variables en figura
+
+## Plant, fungal and bacterial communities across habitats
+
+The survey of plant diversity yielded 216 species, with the average
+number per plot being 26 (min = 10, max = 38). Of these species, 48%
+were only found in urban-habitats (parks, roadsides, residential lots
+and industrial lots), 27% occurred only in non-urban habitats (forests
+and meadows) and 25% were shared by both urban and non-urban habitats
+(**Fig3A**). On average, the habitat with the highest number of species
+per plot were the industrial lots (29), followed by residential lots
+(27), roadsides (24), meadows (23), parks (20) and forests (18). The
+most frequent species were *Holcus lanatus* (22 plots), *Plantago
+lanceolata* (20), *Helminthotheca echioides* (16), *Dactylis glomerata*
+(15) and *Lotus corniculatus* (14). PERMANOVA indicated that the plant
+species composition was significantly different accross habitats
+(100,000 permutations, R<sup>2</sup> = 0.42, F = 3.48, p = \< 0.001).
+NMDS ordination of the plant species composition (**Fig. 3D**) indicated
+that the plots belonging to the same habitat were relatively grouped
+together, with the main exception being one of the roadside plots. The
+ordination indicated that the major gradient in vegetation composition
+along the first axis was a separation between the forest plots and the
+rest, with the meadows being the closest to the forests. Environmental
+fitting of the Pb, organic matter and Mg vectors onto the ordination
+indicated that none of the soils factors had a significant correlation
+(R<sup>2</sup> \< 0.14, p \> 0.05) with the composition of the plant
+communities.
+
+The DNA metabarcoding of soil fungal communities resulted in 4,689 ASVs.
+Of these ASVs, 46% were only found in urban-habitats (parks, roadsides,
+residential lots and industrial lots), 36% occurred only in non-urban
+habitats (forests and meadows) and 18% were shared by both urban and
+non-urban habitats (**Fig3B**). The average number of ASVs per plot was
+340 (min = 174, max = 587), with the habitat-averages ranging from
+residential vacant lots (415) to forests (393), meadows (336), parks
+(323), industrial vacant lots (300) and roadsides (276). The majority of
+ASVs were assigned to Ascomycota (56%), Basidiomycota (24%),
+Rozellomycota (10%) and Glomeromycota (4%). Of the different habitats,
+forests had the highest proportion of Basidiomycota (25% vs. \< 17% in
+the other habitats) and the lowest proportion of Ascomycota (57% vs. \>
+64%). The proportion of Rozellomycota was similar across habitats (from
+6% in meadows to 11% in parks). The proportion of Glomeromycota varied
+between 5% in meadows to 0.5% in forests. A PERMANOVA performed on the
+presence/absence of ASVs indicated significant differences in
+composition between habitats (100,000 permutations, R<sup>2</sup> =
+0.33, F = 2.39, p = \< 0.001). NMDS ordination of the fungal ASV
+composition (**Fig. 3E**) behavead similarly to the ordination of plant
+communities, with plots tending to group by habitat, and the major
+compositional gradient reflecting the separation between the forest
+plots and the rest. Environmental fitting of the Pb, organic matter and
+Mg vectors onto the ordination indicated only organic matter content had
+a significant correlation (R<sup>2</sup> = 0.46, p \< 0.001) with the
+composition of the fungal communities. Low organic matter content
+correlated with the communities from industrial vacant lots and
+roadsides (**Fig. 3E**).
+
+For the bacterial communities, DNA metabarcoding yielded 16,306 ASVs. Of
+these ASVs, 44% were only found in urban-habitats (parks, roadsides,
+residential lots and industrial lots), 31% occurred only in non-urban
+habitats (forests and meadows) and 25% were shared by both urban and
+non-urban habitats (**Fig3C**). The average number of ASVs per plot was
+1769 (min = 1478, max = 2074), with the habitat-averages ranging from
+roadsides (1848) to industrial lots (1794), residential lots (1792),
+meadows (1775), parks (1706) and forests (1697). The majority of ASVs
+were assigned to Proteobacteria (22%), Planctomycetota (15%),
+Actinobacteriota (15%) and Acidobacteriota (10%). Compared to other
+habitats, forests had higher proportions of Proteobacteria and
+Proteobacteria; a lower proportion of Actinobacteriota; and a similar
+proportion of Planctomycetota. A PERMANOVA performed on the
+presence/absence of ASVs indicated significant differences in
+composition between habitats (100,000 permutations, R<sup>2</sup> =
+0.32, F = 2.51, p = \< 0.001). NMDS ordination of the bacterial ASV
+composition (**Fig. 3F**) resulted in less grouping by habitat than for
+the plants and the fungi, but still reflected a main composotional
+gradient from forests to industrial vacant plots. Like in the case of
+the fungal communities, environmental fitting of the Pb, organic matter
+and Mg vectors onto the ordination indicated only organic matter content
+had a significant correlation (R<sup>2</sup> = 0.39, p = 0.001) with the
+composition of the fungal communities. Low organic matter content
+correlated with the communities from industrial vacant lots and
+roadsides (**Fig. 3F**).
+
+<div class="figure">
+
+<img src="../results/figures/Fig3.png" alt="Plant, fungal and bacterial diversity of the sampling plots. Top panels show Venn plots for the shared numbers of (A) plant species, (B) fungal ASVs and (c) bacterial ASVs between urban (parks, roadsides, residential lots and industrial lots) and non-urban (forests, meadows) habitats. Bottom panels show  biplots of community composition ordinartion produced by Non-metric Multi-Dimensional Scaling (NMDS). NMDs were conducted for (A) plant survey (by species abundance), (B) the soil fungal survey (by ASV presence/absence) and (C) the soil bacterial survey (by ASV presence/absence). Colors indicate the habitat. In the biplots, arrows and labels indicate soil variables with a significant correlation with the composition of the communities. Only soil organic matter content and fungal-bacterial communities had a significant correlation." width="450px" />
+<p class="caption">
+<span id="fig:fig3"></span>Figure 2: Plant, fungal and bacterial
+diversity of the sampling plots. Top panels show Venn plots for the
+shared numbers of (A) plant species, (B) fungal ASVs and (c) bacterial
+ASVs between urban (parks, roadsides, residential lots and industrial
+lots) and non-urban (forests, meadows) habitats. Bottom panels show
+biplots of community composition ordinartion produced by Non-metric
+Multi-Dimensional Scaling (NMDS). NMDs were conducted for (A) plant
+survey (by species abundance), (B) the soil fungal survey (by ASV
+presence/absence) and (C) the soil bacterial survey (by ASV
+presence/absence). Colors indicate the habitat. In the biplots, arrows
+and labels indicate soil variables with a significant correlation with
+the composition of the communities. Only soil organic matter content and
+fungal-bacterial communities had a significant correlation.
+</p>
+
+</div>
 
 ## Community novelty across habitats and taxonomic groups
+
+We used the NMDS multidimensional compositional distance (calculate from
+the ordinations in **Fig. 3D-F**) from each urban plot (i.e. park,
+roadside, residential or industrial) to the centroid of the two
+reference non-urban habitats (i.e. forests and meadows) to calculate for
+each plot, taxonomic group and reference habitat a value of community
+novelty (**Fig. 4**). The novelty was significantly different between
+taxonomic groups (F = 45.88, p \< 0.001), being higher for plants (2.45
+± 0.332 S.E.) than for fungi (2.15 ± 0.396 S.E.) and bacteria (1.56 ±
+0.303 S.E.). The novelty was also significantly different depending on
+the reference non-urban habitat that was used (F = 199.08, p \< 0.001),
+being higher compared to forests (2.60 ± 0.287 S.E.) than to meadows
+(1.51 ± 0.300 S.E.). Nonetheless, for each taxonomic group, there was a
+high positive correlation between the novelty compared against forests
+or meadows (r = 0.5 for plants; 0.7 for fungi; 0.9 for bacteria). The
+different urban habitats also differed significantly in their novelty (F
+= 9.51, p = 0.001), being higher for industrial vacant lots (2.46 ±
+0.311 S.E.) than for roadsides (2.18 ± 0.367 S.E.), parks (1.95 ± 0.440
+S.E.) and residential vacant lots (1.63 ± 0.307 S.E.). The soil
+physicochemical properties (Pb, organic matter, Mg) had no significant
+effect on community novelty (p \> 0.05).
+
+<div class="figure">
+
+<img src="../results/figures/Fig4.png" alt="Community novelty for plants, fungi and bacteria. Community novelty was calculated as the multidimensional distance from each urban plot to the centroid of two reference non-urban habitats (forests, panels A-C-E; and meadows, panels B-D-F), as calculated by NMDS ordination. Novelty was calculated separately for plant (panels A-B), fungal (panels C-D) and bacterial communities (panels E-F)." width="450px" />
+<p class="caption">
+<span id="fig:fig4"></span>Figure 3: Community novelty for plants, fungi
+and bacteria. Community novelty was calculated as the multidimensional
+distance from each urban plot to the centroid of two reference non-urban
+habitats (forests, panels A-C-E; and meadows, panels B-D-F), as
+calculated by NMDS ordination. Novelty was calculated separately for
+plant (panels A-B), fungal (panels C-D) and bacterial communities
+(panels E-F).
+</p>
+
+</div>
 
 ## Soil drivers of novelty
 
@@ -370,6 +576,15 @@ covers just part of the growing season of the whole vegetation.
 
 There are some other habitats in the city which were not included in the
 present study, e.g. wetlands, beach, cliffs.
+
+# Data availability
+
+The original datasets, as well as R code for analysis and creation of
+the manuscript can be accessed at the GitHub repository
+<https://github.com/efernandezpascual/disturbance>. Upon publication, a
+version of record of the repository will be deposited in Zenodo.
+
+# References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
@@ -438,3 +653,8 @@ Cantabrian Spain</span>](https://doi.org/10.1002/evan.20067).
 </div>
 
 </div>
+
+# Supplementary
+
+**Appendix S1** Principal Component Analysis and correlation analysis of
+the soil physicochemical properties.
