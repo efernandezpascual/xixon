@@ -83,7 +83,7 @@ logs %>%
         axis.title.y = element_text(size = 10),
         axis.text.x = element_text(size = 10, color = "black", angle = 45, vjust = 1, hjust=1),
         axis.text.y = element_text(size = 10, color = "black"),
-        plot.margin = unit(c(0.1,0.1,0.1,0.1), "cm")) +
+        plot.margin = unit(c(0.1,0.1,0.1,0.5), "cm")) +
   geom_hline(yintercept = 0, linetype = "dashed") -> F2A; F2A
 
 ### Soil bioclimatic indices

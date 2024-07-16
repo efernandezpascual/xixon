@@ -129,7 +129,7 @@ We used the NMDS multidimensional compositional distance (calculate from the ord
 knitr::include_graphics("../results/figures/Fig4.png")
 ```
 
-## Soil drivers of novelty
+> Añadir a la figura un NMDS con flechas mostrando el desplazamiento respecto a los centroides?
 
 # Discussion
 
