@@ -5,7 +5,7 @@ output:
     reference_docx: template.docx
     number_sections: false
 bibliography: refs.bib
-csl: urban-forestry-and-urban-greening.csl
+csl: landscape-and-urban-planning.csl
 link-citations: yes
 always_allow_html: true
 ---
@@ -22,9 +22,9 @@ knitr::knit_hooks$set(inline = function(x) {
 
 Running title: Compositional novelty across urban habitats
 
-Eduardo Fernández-Pascual^1,a^ (<https://orcid.org/0000-0002-4743-9577>), Zuzana Ferencova^2^ (<https://orcid.org/0000-0002-0915-0916>), Víctor González-García^1^ (<https://orcid.org/0000-0002-8949-7943>), Borja Jiménez-Alfaro^1^ (<https://orcid.org/0000-0001-6601-9597>)
+Eduardo Fernández-Pascual^1,2,a^ (<https://orcid.org/0000-0002-4743-9577>), Zuzana Ferencova^3^ (<https://orcid.org/0000-0002-0915-0916>), Víctor González-García^1,2^ (<https://orcid.org/0000-0002-8949-7943>), Borja Jiménez-Alfaro^1,2^ (<https://orcid.org/0000-0001-6601-9597>)
 
-^1^ Biodiversity Research Institute (IMIB), University of Oviedo - CSIC - Principality of Asturias, Mieres, Spain; ^2^ Jardín Botánico Atlántico, Gijón/Xixón, Spain
+^1^ Biodiversity Research Institute (IMIB), University of Oviedo - CSIC - Principality of Asturias, Mieres, Asturias, Spain; ^2^ Department of Organismal and Systems Biology, University of Oviedo, Oviedo/Uviéu, Asturias, Spain; ^3^ Jardín Botánico Atlántico, Gijón/Xixón, Spain
 
 Correspondence: Eduardo Fernández-Pascual, Instituto Mixto de Investigación en Biodiversidad, Campus de Mieres, Edificio de Investigación, 5ª planta, c/ Gonzalo Gutiérrez Quirós s/n, E-33600 Mieres, Spain. Email: [fernandezpeduardo\@uniovi.es](mailto:fernandezpeduardo@uniovi.es){.email}. Telephone: +34985104781.
 
@@ -34,7 +34,7 @@ Eduardo Fernández-Pascual: Conceptualization; Methodology; Investigation; Data 
 
 # Acknowledgements
 
-María García Fernández, Sara Gutiérrez Cruz and Abelardo Sigüenza Solís helped with the field surveys. Thanks to AllGenetics & Biology SL (A Coruña, Spain) for DNA metabarcoding analysis and to INEA Laboratory (Valladolid, Spain) for soil physicochemical analysis. We are thankful to Fundación Biodiversidad for their support. 
+María García Fernández, Sara Gutiérrez Cruz and Abelardo Sigüenza Solís helped with the field surveys. Thanks to AllGenetics & Biology SL (A Coruña, Spain) for DNA metabarcoding analysis and to INEA Laboratory (Valladolid, Spain) for soil physicochemical analysis. 
 
 # Declaration of interest statement
 
@@ -42,7 +42,7 @@ We have nothing to declare.
 
 # Funding
 
-European Union - NextGenerationEU within the framework of the Recovery, Transformation and Resilience Plan (PRTR) of Ministry for the Ecological Transition and the Demographic Challenge (MITECO) of the Government of Spain —Project: Gijón Ecoresiliente (PRTR 0204103/010000). Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico [SV-23-GIJON-JBA]. Grant "Laboratorio de Vegetación y Biodiversidad" (IDE/2024/000720, Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was supported by the Government of Asturias (Programa “Severo Ochoa” PA-22-BP21-098).
+The project is supported by the Biodiversity Foundation of the Ministry for the Ecological Transition and the Demographic Challenge (MITECO) of the Government of Spain, within the framework of the Recovery, Transformation and Resilience Plan (PRTR), funded by the European Union - NextGenerationEU. Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico (SV-23-GIJON-JBA). Grant "Laboratorio de Vegetación y Biodiversidad" (IDE/2024/000720, Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was supported by the Government of Asturias (Programa “Severo Ochoa” PA-22-BP21-098).
 
 
 # Data availability statement

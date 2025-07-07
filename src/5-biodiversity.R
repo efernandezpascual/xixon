@@ -5,6 +5,7 @@ read.csv("data/plants.csv", fileEncoding = "latin1") -> plants
 read.csv("data/fungi.csv", fileEncoding = "latin1") -> fungi
 read.csv("data/bacteria.csv", fileEncoding = "latin1") -> bacteria
 read.csv("data/soils.csv", fileEncoding = "latin1") -> soils
+read.csv("data/soil-pca.csv", fileEncoding = "latin1") -> pca
 
 ### Plant species pools
 
@@ -229,6 +230,7 @@ header %>%
   select(habitat, id) %>%
   merge(plants) %>%
   select(id, taxon, cover) %>%
+  mutate(cover = 1) %>% # Transform cover to presence
   spread(taxon, cover, fill = 0) %>%
   column_to_rownames(var = "id") -> matrix 
 
@@ -239,10 +241,20 @@ matrix %>%
 ### Env fit
 
 soils %>% select(Pb, OM, Mg) -> soilvar
+pca %>% select(Dim.1:Dim.3) -> soilvar
 
 vegan::envfit(nmds, soilvar, permutations = 100000, strata = NULL, 
        choices=c(1,2),  display = "sites", w  = weights(nmds, display),
-       na.rm = FALSE)
+       na.rm = FALSE) -> ef
+
+ef
+ef$vectors$arrows %>%
+  data.frame %>%
+  rownames_to_column(var = "Variable") %>%
+  filter(Variable == "Dim.1") %>%
+  mutate(Variable = as.factor(Variable)) %>%
+  mutate(Variable = fct_recode(Variable, "Pb" = "Dim.1")) %>%
+  rename(Dim.1 = NMDS1, Dim.2 = NMDS2) -> pcaVars
 
 ### Site scores
 
@@ -274,6 +286,8 @@ ggplot(sitescores, aes(x = Dim.1, y = Dim.2)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed") +
   geom_point(aes(fill = habitat), color = "black", size = 3.5, shape = 21) +
+  geom_segment(data = pcaVars, aes(x = 0, y = 0, xend = Dim.1, yend = Dim.2)) +
+  geom_label(data = pcaVars, aes(x = Dim.1, y = Dim.2, label = Variable),  show.legend = FALSE, size = 4) +
   #ggrepel::geom_text_repel(data = sppscores, aes(label = Species), color = "grey33", fontface = "italic", size = 3.5, segment.color = "transparent") +
   ggthemes::theme_tufte() +
   ggtitle(label = "(D) Plant communities") +
@@ -315,6 +329,7 @@ matrix %>%
 ### Env fit
 
 soils %>% select(Pb, OM, Mg) -> soilvar
+pca %>% select(Dim.1:Dim.3) -> soilvar
 
 vegan::envfit(nmds, soilvar, permutations = 100000, strata = NULL, 
               choices=c(1,2),  display = "sites", w  = weights(nmds, display),
@@ -324,7 +339,9 @@ ef
 ef$vectors$arrows %>%
   data.frame %>%
   rownames_to_column(var = "Variable") %>%
-  filter(Variable == "OM") %>%
+  filter(Variable == "Dim.2") %>%
+  mutate(Variable = as.factor(Variable)) %>%
+  mutate(Variable = fct_recode(Variable, "OM" = "Dim.2")) %>%
   rename(Dim.1 = NMDS1, Dim.2 = NMDS2) -> pcaVars
 
 ### Site scores
@@ -398,6 +415,7 @@ matrix %>%
 ### Env fit
 
 soils %>% select(Pb, OM, Mg) -> soilvar
+pca %>% select(Dim.1:Dim.3) -> soilvar
 
 vegan::envfit(nmds, soilvar, permutations = 100000, strata = NULL, 
               choices=c(1,2),  display = "sites", w  = weights(nmds, display),
@@ -407,7 +425,9 @@ ef
 ef$vectors$arrows %>%
   data.frame %>%
   rownames_to_column(var = "Variable") %>%
-  filter(Variable == "OM") %>%
+  filter(Variable == "Dim.2") %>%
+  mutate(Variable = as.factor(Variable)) %>%
+  mutate(Variable = fct_recode(Variable, "OM" = "Dim.2")) %>%
   rename(Dim.1 = NMDS1, Dim.2 = NMDS2) -> pcaVars
 
 ### Site scores
