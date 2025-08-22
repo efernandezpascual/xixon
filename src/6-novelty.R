@@ -270,6 +270,7 @@ df1 %>%
   summarise(m = mean(Value), se = sd(Value)/sqrt(5))
 
 nlme::lme(Value ~ Group + Reference + habitat + OM + Pb + Mg,  random=~1 | id, data = df1) -> m1
+save(m1, file = "results/model/m1.RData")
 summary(m1)
 nlme::anova.lme(m1)
 

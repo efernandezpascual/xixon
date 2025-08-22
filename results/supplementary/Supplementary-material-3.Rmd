@@ -1,0 +1,47 @@
+---
+title: "Supplementary material 3 Full results of the Linear Mixed Model"
+output:
+  bookdown::pdf_document2:
+    reference_docx: template.docx
+    number_sections: false
+    toc: false
+link-citations: yes
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message = FALSE, echo = FALSE, warning = FALSE}
+knitr::knit_hooks$set(inline = function(x) {
+  prettyNum(x, big.mark = ",")
+})
+```
+
+```{r message = FALSE, echo = FALSE, warning = FALSE}
+library(tidyverse)
+load(file = "../model/m1.Rdata")
+```
+
+## Model summary
+
+```{r message = FALSE, echo = FALSE, warning = FALSE}
+library(nlme)
+summary(m1)
+```
+
+## ANOVA table
+
+```{r message = FALSE, echo = FALSE, warning = FALSE}
+library(nlme)
+anova.lme(m1)
+```
+
+## Diagnostic plots
+
+```{r message = FALSE, echo = FALSE, warning = FALSE}
+library(performance)
+library(see)
+check_model(m1)
+```

@@ -42,7 +42,7 @@ We have nothing to declare.
 
 # Funding
 
-The project is supported by the Biodiversity Foundation of the Ministry for the Ecological Transition and the Demographic Challenge (MITECO) of the Government of Spain, within the framework of the Recovery, Transformation and Resilience Plan (PRTR), funded by the European Union - NextGenerationEU. Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico (SV-23-GIJON-JBA). Grant "Laboratorio de Vegetación y Biodiversidad" (IDE/2024/000720, Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was supported by the Government of Asturias (Programa “Severo Ochoa” PA-22-BP21-098).
+The project is supported by the Biodiversity Foundation of the Ministry for the Ecological Transition and the Demographic Challenge (MITECO) of the Government of Spain, within the framework of the Recovery, Transformation and Resilience Plan (PRTR), funded by the European Union - NextGenerationEU. Project PID2024-156390NB-I00 funded by MICIU/ AEI / 10.13039/501100011033/ FEDER, UE. Project SV-23-GIJON-JBA funded by Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico. Grant "Laboratorio de Vegetación y Biodiversidad" (IDE/2024/000720, Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was supported by the Government of Asturias (Programa “Severo Ochoa” PA-22-BP21-098).
 
 
 # Data availability statement

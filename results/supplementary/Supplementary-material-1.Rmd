@@ -1,0 +1,40 @@
+---
+title: "Supplementary material 1 Extended methodology for the soil DNA metabarcoding analysis"
+output:
+  bookdown::pdf_document2:
+    reference_docx: template.docx
+    number_sections: false
+    toc: false
+    latex_engine: xelatex
+bibliography: ../../doc/refs.bib
+csl: ../../doc/landscape-and-urban-planning.csl
+link-citations: yes
+always_allow_html: true
+---
+
+Samples were sent to AllGenetics & Biology SL (A Coruña, Spain) for DNA metabarcoding analysis. DNA analysis included DNA extraction; library preparation with 2 pairs of different primers specific for barcoding (ITS for fungi and 16S for bacteria); sequencing on an Illumina NovaSeq PE250 platform (assuming an amplicon size < 450 bp); and standard bioinformatic analysis including demultiplexing, quality control and sample preprocessing, taxonomic assignment, number of reads per taxon and generation of rarefaction curves.
+
+# DNA isolation and quantification
+
+DNA was isolated from each soil sample using the DNeasy PowerSoil Pro DNA isolation kit (Qiagen) following the manufacturer’s instructions, and DNA was eluted in a final volume of 50 μL. In one sample the above-mentioned protocol did not yield a DNA extract of enough concentration, so DNA was isolated using the FastDNA Spin Kit for Soil (MPBio) following the manufacturer’s instructions, and DNA was eluted in a final volume of 70 μL. An extraction blank (Bex) was included in each round of DNA extraction and treated as plot samples to check for contamination. DNA concentration in each extract was quantified using the Qubit High Sensitivity dsDNA Assay (Thermo Fisher Scientific).
+
+# DNA metabarcoding library preparation and sequencing
+
+For fungal library preparation, a fragment of the nuclear ITS1 region of around 280-300 bp (including the primer sequences) was amplified using the following primers: forward - ITS1f (5’ CTTGGTCATTTAGAGGAAGTAA 3’) [@RN5548]; reverse - ITS2 (5’ GCTGCGTTCTTCATCGATGC 3’) [@RN5549]. For prokaryotic library preparation, a fragment of the 16S rRNA gene of around 300 bp (including primer sequences) was amplified using the following primers: forward - 515F-Y (5’ GTGYCAGCMGCCGCGGTAA 3’) [@RN5536]; reverse - 806RB (5’ GGACTACNVGGGTWTCTAAT 3’) [@RN5537]. These primers also included the Illumina sequencing primer sequences attached to their 5’ ends. In the first amplification step, PCRs were carried out in a final volume of 12.5 μL, containing 1.25 μL of template DNA (1:2 diluted in PCR round 3; not diluted in PCR round 11), 0.5 μM of the primers, 3.13 μL of Supreme NZYTaq 2x Green Master Mix (NZYTech), and ultrapure water up to 12.5 μL. The fungal reaction mixture was incubated as follows: an initial denaturation at 95 ºC for 5 min, followed by 35 cycles of 95 ºC for 30 s, 49 ºC for 45 s, 72 ºC for 45 s, and a final extension step at 72 ºC for 7 min. The bacterial reaction mixture was incubated as follows: an initial denaturation at 95 ºC for 5 min, followed by 25 cycles of 95 ºC for 30 s, 47 ºC for 45 s, 72ºC for 45 s, and a final extension step at 72 ºC for 7 min. The oligonucleotide indices that are required for multiplexing different libraries in the same sequencing pool were attached in a second amplification step with identical conditions but only 5 cycles and 60 ºC as the annealing temperature. A negative control that contained no DNA (BPCR) was included in every PCR round to check for contamination during library preparation. Library size was verified by running the libraries on 2 % agarose gels stained with GreenSafe (NZYTech) and imaging them under UV light. Then, libraries were purified using the Mag-Bind RXNPure Plus magnetic beads (Omega Bio-tek), following the instructions provided by the manufacturer. Finished libraries were pooled in equimolar amounts according to the results of a Qubit dsDNA HS Assay (Thermo Fisher Scientific) quantification. The pool was sequenced in a fraction of a NovaSeq PE250 flow cell (Illumina) aiming for a total output of 2 gigabases. Any potential traces of adapter dimers were removed using Cutadapt v3.5 [@RN5538]. Quality of the sequencing data was assessed with the software FastQC [@RN5539].
+
+# Processing of sequencing data and inference of ASVs
+
+Cutadapt v3.5 was used to trim off non-biological DNA sequences (primers, indices, and sequencing adapters). Then, amplicon reads were processed using the DADA2 pipeline [@RN5541] implemented in QIIME 2 (release 2023.7) [@RN5540]. The first step in the DADA2 pipeline was to remove PCR primers and filter reads according to their quality. After checking the read quality profiles, forward reads were truncated at position 175, and reverse reads at position 131. The next step was to denoise and infer Amplicon Sequence Variants (ASVs). Error rates were learned from the dataset to denoise, using the parametric error model implemented in DADA2. Dereplication of the dataset (i.e. combination of all identical reads into unique reads) was carried out to reduce computational effort. These dereplicated forward and reverse reads were used to infer ASVs with the core sample inference algorithm [@RN5541]. Subsequently, corresponding R1 and R2 reads were merged into pairs with a minimum overlap of 12 identical base pairs. The final step in the DADA2 pipeline was to reduce the impact of artefacts (chimaeras) in the dataset. The final output of the DADA2 pipeline was a table containing the count of reads of every observed ASV in each sample, as well as a table listing all ASVs and their corresponding representative sequences.
+
+# Taxonomic assignment
+
+Taxonomic assignment of each ASV was performed using a pre-trained classifier of the UNITE reference database for fungi [@RN5550] (release May 2021); and of the SILVA reference database for bacteria [@RN5542] (release 138.1 August 2020). To compare the representative sequences of the ASVs to the reference database, and compute the taxonomic assignment, the algorithm sklearn [@RN5543] implemented in QIIME 2 was applied, setting a minimum confidence level of 0.8. Several filters were applied to exclude: (1) singletons (i.e. ASVs containing only one member sequence in the whole data set); (2) ASVs occurring at a frequency below 0.01 % in each sample, to reduce the mistagging bias [@RN5544]; (3) from the bacterial dataset, non-prokaryotic ASVs such as eukaryotic sequences of plastid [@RN5545] and mitochondrial [@RN5546] origin; (4) those assigned only at domain (Bacteria) or kingdom (Fungi) level; (5) ASVs present in the negative controls that were more abundant in the negative controls than in the samples, indicating contamination [@RN5547].
+
+# Alpha rarefaction plots
+
+Alpha rarefaction plots showed that the sequencing depth to reach saturation was 30,000 reads for the fungi and 22,000 reads for the bacteria, above the sequencing depth of all plots for fungi (mean = 114,919 reads; min = 79,045; max = 157,110) and bacteria (mean = 113,341 reads; min = 84,094; max = 171,404).
+
+# References
+
+::: {#refs}
+:::
