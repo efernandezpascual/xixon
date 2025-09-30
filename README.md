@@ -11,7 +11,7 @@ urban habitats*, including the datasets, the scripts to perform data
 cleaning and analysis, and the `Rmarkdown` files to create the
 manuscript.
 
-# Abstract
+## Abstract
 
 Understanding urban community novelty can help to predict the rewilding
 potential of vacant urban spaces, facilitating their integration into
@@ -40,7 +40,7 @@ residential vacant lots, direct restoration of industrial lots, and
 conservation of natural and agricultural habitat remnants as sources of
 native species.
 
-# Keywords
+## Keywords
 
 Urban biodiversity, vegetation, soil fungi, soil bacteria, DNA
 metabarcoding, soil pollution, novel ecosystems
