@@ -20,43 +20,21 @@ knitr::knit_hooks$set(inline = function(x) {
 })
 ```
 
-Running title: Compositional novelty across urban habitats
-
 Eduardo Fernández-Pascual^1,2,a^ (<https://orcid.org/0000-0002-4743-9577>), Zuzana Ferencova^3^ (<https://orcid.org/0000-0002-0915-0916>), Víctor González-García^1,2^ (<https://orcid.org/0000-0002-8949-7943>), Borja Jiménez-Alfaro^1,2^ (<https://orcid.org/0000-0001-6601-9597>)
 
 ^1^ Biodiversity Research Institute (IMIB), University of Oviedo - CSIC - Principality of Asturias, Mieres, Asturias, Spain; ^2^ Department of Organismal and Systems Biology, University of Oviedo, Oviedo/Uviéu, Asturias, Spain; ^3^ Jardín Botánico Atlántico, Gijón/Xixón, Spain
 
 Correspondence: Eduardo Fernández-Pascual, Instituto Mixto de Investigación en Biodiversidad, Campus de Mieres, Edificio de Investigación, 5ª planta, c/ Gonzalo Gutiérrez Quirós s/n, E-33600 Mieres, Spain. Email: [fernandezpeduardo\@uniovi.es](mailto:fernandezpeduardo@uniovi.es){.email}. Telephone: +34985104781.
 
-# Author contributions
-
-Eduardo Fernández-Pascual: Conceptualization; Methodology; Investigation; Data Curation; Formal Analysis; Visualization; Writing – Original Draft Preparation; Writing – Review & Editing. Zuzana Ferencova: Conceptualization; Methodology; Investigation; Data Curation; Writing – Review & Editing. Víctor González-García: Investigation; Visualization; Writing – Review & Editing; Borja Jiménez-Alfaro: Methodology; Writing – Review & Editing.
-
-# Acknowledgements
-
-María García Fernández, Sara Gutiérrez Cruz and Abelardo Sigüenza Solís helped with the field surveys. Thanks to AllGenetics & Biology SL (A Coruña, Spain) for DNA metabarcoding analysis and to INEA Laboratory (Valladolid, Spain) for soil physicochemical analysis. 
-
-# Declaration of interest statement
-
-We have nothing to declare.
-
-# Funding
-
-The project is supported by the Biodiversity Foundation of the Ministry for the Ecological Transition and the Demographic Challenge (MITECO) of the Government of Spain, within the framework of the Recovery, Transformation and Resilience Plan (PRTR), funded by the European Union - NextGenerationEU. Project PID2024-156390NB-I00 funded by MICIU/ AEI / 10.13039/501100011033/ FEDER, UE. Project SV-23-GIJON-JBA funded by Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico. Grant "Laboratorio de Vegetación y Biodiversidad" (IDE/2024/000720, Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was supported by the Government of Asturias (Programa “Severo Ochoa” PA-22-BP21-098).
-
-# Data availability statement
-
-Original datasets, R code for analysis and Rmarkdown code for creation of the manuscript can be accessed at Zenodo: [DOI WILL BE INSERTED HERE].
-
-# Abstract (250 words)
+# Abstract
 
 Understanding urban community novelty can help to predict the rewilding potential of vacant urban spaces, facilitating their integration into biodiverse cities. We tested the hypothesis that cities are composed of different degrees of ecological novelty by studying four urban habitats with differing degrees of management and human legacy: park lawns, roadsides, residential vacant lots, and industrial vacant lots. We focused on community compositional novelty, by comparing the plant, fungal and bacterial species composition between urban habitats and two reference pre-urban habitats: forests and meadows. We used a compositional novelty index based on multidimensional ordination, which is straightforward to calculate and only requires species co-occurrence data for urban and reference habitats. As expected, (1) plants displayed the highest novelty and bacteria the lowest; (2) urban communities were markedly different from forests and relatively more similar to meadows; and (3) compositional novelty was highest in industrial lots. Managed park lawns, which we had expected to be highly novel, were relatively close to hay meadows. The lowest novelty was recorded in residential vacant lots, which had biological communities that more closely resembled those of pre-urban habitats. Our results highlight the effect of habitat type as a major driver of urban community composition and novelty. This suggests that city biodiversity can be enhanced by an integrative approach to the urban landscape that favors habitat heterogeneity by passive rewilding of park lawns, non-intervention on residential vacant lots, direct restoration of industrial lots, and conservation of natural and agricultural habitat remnants as sources of native species.
 
-# Keywords (7)
+# Keywords
 
 Urban biodiversity, vegetation, soil fungi, soil bacteria, DNA metabarcoding, soil pollution, novel ecosystems
 
-# Highlights (3 to 5, 85 words each)
+# Highlights
 
 * A compositional novelty index based on multidimensional ordination is straightforward to calculate and only requires species co-occurrence data for urban and reference pre-urban habitats. 
 * Novelty was the highest for plant communities and the lowest for soil bacteria. 
@@ -176,3 +154,23 @@ Our results highlight the effect of habitat type as a major driver of urban comm
 **Supplementary material 2** Principal Component Analysis and correlation analysis of the soil physicochemical properties.
 
 **Supplementary material 3** Full results of the Linear Mixed Model.
+
+# Author contributions
+
+Eduardo Fernández-Pascual: Conceptualization; Methodology; Investigation; Data Curation; Formal Analysis; Visualization; Writing – Original Draft Preparation; Writing – Review & Editing. Zuzana Ferencova: Conceptualization; Methodology; Investigation; Data Curation; Writing – Review & Editing. Víctor González-García: Investigation; Visualization; Writing – Review & Editing; Borja Jiménez-Alfaro: Methodology; Writing – Review & Editing.
+
+# Acknowledgements
+
+María García Fernández, Sara Gutiérrez Cruz and Abelardo Sigüenza Solís helped with the field surveys. Thanks to AllGenetics & Biology SL (A Coruña, Spain) for DNA metabarcoding analysis and to INEA Laboratory (Valladolid, Spain) for soil physicochemical analysis. 
+
+# Declaration of interest statement
+
+We have nothing to declare.
+
+# Funding
+
+The project is supported by the Biodiversity Foundation of the Ministry for the Ecological Transition and the Demographic Challenge (MITECO) of the Government of Spain, within the framework of the Recovery, Transformation and Resilience Plan (PRTR), funded by the European Union - NextGenerationEU. Project PID2024-156390NB-I00 funded by MICIU/ AEI / 10.13039/501100011033/ FEDER, UE. Project SV-23-GIJON-JBA funded by Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico. Grant "Laboratorio de Vegetación y Biodiversidad" (IDE/2024/000720, Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was supported by the Government of Asturias (Programa “Severo Ochoa” PA-22-BP21-098).
+
+# Data availability statement
+
+Original datasets, R code for analysis and Rmarkdown code for creation of the manuscript can be accessed at Zenodo: [DOI WILL BE INSERTED HERE].

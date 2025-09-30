@@ -2,8 +2,6 @@ Compositional novelty of plant, fungal and bacterial communities across
 urban habitats
 ================
 
-Running title: Compositional novelty across urban habitats
-
 Eduardo Fernández-Pascual<sup>1,2,a</sup>
 (<https://orcid.org/0000-0002-4743-9577>), Zuzana Ferencova<sup>3</sup>
 (<https://orcid.org/0000-0002-0915-0916>), Víctor
@@ -23,48 +21,7 @@ Investigación, 5ª planta, c/ Gonzalo Gutiérrez Quirós s/n, E-33600
 Mieres, Spain. Email: <fernandezpeduardo@uniovi.es>. Telephone:
 +34985104781.
 
-# Author contributions
-
-Eduardo Fernández-Pascual: Conceptualization; Methodology;
-Investigation; Data Curation; Formal Analysis; Visualization; Writing –
-Original Draft Preparation; Writing – Review & Editing. Zuzana
-Ferencova: Conceptualization; Methodology; Investigation; Data Curation;
-Writing – Review & Editing. Víctor González-García: Investigation;
-Visualization; Writing – Review & Editing; Borja Jiménez-Alfaro:
-Methodology; Writing – Review & Editing.
-
-# Acknowledgements
-
-María García Fernández, Sara Gutiérrez Cruz and Abelardo Sigüenza Solís
-helped with the field surveys. Thanks to AllGenetics & Biology SL (A
-Coruña, Spain) for DNA metabarcoding analysis and to INEA Laboratory
-(Valladolid, Spain) for soil physicochemical analysis.
-
-# Declaration of interest statement
-
-We have nothing to declare.
-
-# Funding
-
-The project is supported by the Biodiversity Foundation of the Ministry
-for the Ecological Transition and the Demographic Challenge (MITECO) of
-the Government of Spain, within the framework of the Recovery,
-Transformation and Resilience Plan (PRTR), funded by the European
-Union - NextGenerationEU. Project PID2024-156390NB-I00 funded by MICIU/
-AEI / 10.13039/501100011033/ FEDER, UE. Project SV-23-GIJON-JBA funded
-by Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico. Grant
-“Laboratorio de Vegetación y Biodiversidad” (IDE/2024/000720,
-Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was
-supported by the Government of Asturias (Programa “Severo Ochoa”
-PA-22-BP21-098).
-
-# Data availability statement
-
-Original datasets, R code for analysis and Rmarkdown code for creation
-of the manuscript can be accessed at Zenodo: \[DOI WILL BE INSERTED
-HERE\].
-
-# Abstract (250 words)
+# Abstract
 
 Understanding urban community novelty can help to predict the rewilding
 potential of vacant urban spaces, facilitating their integration into
@@ -93,12 +50,12 @@ residential vacant lots, direct restoration of industrial lots, and
 conservation of natural and agricultural habitat remnants as sources of
 native species.
 
-# Keywords (7)
+# Keywords
 
 Urban biodiversity, vegetation, soil fungi, soil bacteria, DNA
 metabarcoding, soil pollution, novel ecosystems
 
-# Highlights (3 to 5, 85 words each)
+# Highlights
 
 - A compositional novelty index based on multidimensional ordination is
   straightforward to calculate and only requires species co-occurrence
@@ -1248,3 +1205,44 @@ metabarcoding analysis.
 correlation analysis of the soil physicochemical properties.
 
 **Supplementary material 3** Full results of the Linear Mixed Model.
+
+# Author contributions
+
+Eduardo Fernández-Pascual: Conceptualization; Methodology;
+Investigation; Data Curation; Formal Analysis; Visualization; Writing –
+Original Draft Preparation; Writing – Review & Editing. Zuzana
+Ferencova: Conceptualization; Methodology; Investigation; Data Curation;
+Writing – Review & Editing. Víctor González-García: Investigation;
+Visualization; Writing – Review & Editing; Borja Jiménez-Alfaro:
+Methodology; Writing – Review & Editing.
+
+# Acknowledgements
+
+María García Fernández, Sara Gutiérrez Cruz and Abelardo Sigüenza Solís
+helped with the field surveys. Thanks to AllGenetics & Biology SL (A
+Coruña, Spain) for DNA metabarcoding analysis and to INEA Laboratory
+(Valladolid, Spain) for soil physicochemical analysis.
+
+# Declaration of interest statement
+
+We have nothing to declare.
+
+# Funding
+
+The project is supported by the Biodiversity Foundation of the Ministry
+for the Ecological Transition and the Demographic Challenge (MITECO) of
+the Government of Spain, within the framework of the Recovery,
+Transformation and Resilience Plan (PRTR), funded by the European
+Union - NextGenerationEU. Project PID2024-156390NB-I00 funded by MICIU/
+AEI / 10.13039/501100011033/ FEDER, UE. Project SV-23-GIJON-JBA funded
+by Ayuntamiento de Gijón/Xixón, Jardín Botánico Atlántico. Grant
+“Laboratorio de Vegetación y Biodiversidad” (IDE/2024/000720,
+Principality of Asturias-Sekuens-EU-FEDER). Víctor González-García was
+supported by the Government of Asturias (Programa “Severo Ochoa”
+PA-22-BP21-098).
+
+# Data availability statement
+
+Original datasets, R code for analysis and Rmarkdown code for creation
+of the manuscript can be accessed at Zenodo: \[DOI WILL BE INSERTED
+HERE\].
