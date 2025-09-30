@@ -5,6 +5,7 @@ read.csv("data/plants.csv", fileEncoding = "latin1") -> plants
 read.csv("data/fungi.csv", fileEncoding = "latin1") -> fungi
 read.csv("data/bacteria.csv", fileEncoding = "latin1") -> bacteria
 read.csv("data/soils.csv", fileEncoding = "latin1") -> soils
+read.csv("data/soil-pca.csv", fileEncoding = "latin1") -> pca
 
 ### Compositional novelty for plants
 
@@ -13,6 +14,7 @@ header %>%
   filter(habitat != "N4D") %>%
   merge(plants) %>%
   select(id, taxon, cover) %>%
+  mutate(cover = 1) %>% # Transform cover to presence
   spread(taxon, cover, fill = 0) %>%
   column_to_rownames(var = "id") -> matrix 
 
@@ -157,11 +159,11 @@ novelty %>%
   gather(Trait, Novelty, -c(id, habitat)) %>%
   mutate(Trait = fct_relevel(Trait, "plant.forest", "plant.meadow", "fungi.forest", "fungi.meadow", "bacterial.forest", "bacterial.meadow")) %>%
   mutate(Trait = fct_recode(Trait, "(E) Bacterial\n      novelty\n      vs. forests" = "bacterial.forest",
-                           "(C) Fungal\n      novelty\n      vs. forests" = "fungi.forest",
-                           "(A) Plant\n      novelty\n      vs. forests" = "plant.forest",
-                           "(F) Bacterial\n      novelty\n      vs. meadows" = "bacterial.meadow",
-                           "(D) Fungal\n      novelty\n      vs. meadows" = "fungi.meadow",
-                           "(B) Plant\n      novelty\n      vs. meadows" = "plant.meadow",)) %>%
+                            "(C) Fungal\n      novelty\n      vs. forests" = "fungi.forest",
+                            "(A) Plant\n      novelty\n      vs. forests" = "plant.forest",
+                            "(F) Bacterial\n      novelty\n      vs. meadows" = "bacterial.meadow",
+                            "(D) Fungal\n      novelty\n      vs. meadows" = "fungi.meadow",
+                            "(B) Plant\n      novelty\n      vs. meadows" = "plant.meadow",)) %>%
   mutate(habitat = fct_relevel(habitat, "forest", "meadow", "park", "roadside", "residential", "industrial")) %>%
   mutate(habitat = fct_recode(habitat, "Forests" = "forest", "Meadows" = "meadow",
                               "Parks" = "park", "Roadsides" = "roadside",
@@ -205,10 +207,12 @@ get_lower_tri<-function(cormat){
   return(cormat)
 }
 
-read.csv("data/soils.csv", fileEncoding = "latin1") %>%
-  select(id, OM, Pb, Mg) %>%
+# read.csv("data/soils.csv", fileEncoding = "latin1") %>%
+#   select(id, OM, Pb, Mg) %>%
+read.csv("data/soil-pca.csv", fileEncoding = "latin1") %>%
+  select(id, Dim.1:Dim.3) %>%
   merge(novelty) %>% 
-  select(OM, Pb, Mg, plant.forest:bacterial.meadow) %>%
+  select(Dim.1:Dim.3, plant.forest:bacterial.meadow) %>%
   cor() %>% 
   round(1) %>%
   get_lower_tri() %>%
@@ -247,13 +251,13 @@ read.csv("data/soils.csv", fileEncoding = "latin1") %>%
 
 ### Model
 
-read.csv("data/soils.csv", fileEncoding = "latin1") %>%
-  select(id, OM, Pb, Mg) %>%
+read.csv("data/soil-pca.csv", fileEncoding = "latin1") %>%
+  select(id, Dim.1:Dim.3) %>%
   merge(novelty)  %>%
   gather(Trait, Value, plant.forest:bacterial.meadow) %>%
   separate(Trait,  
-          into = c("Group", "Reference"),
-          sep = "\\.") -> df1
+           into = c("Group", "Reference"),
+           sep = "\\.") -> df1
 
 df1 %>% head
 
@@ -269,8 +273,7 @@ df1 %>%
   group_by(Reference) %>%
   summarise(m = mean(Value), se = sd(Value)/sqrt(5))
 
-nlme::lme(Value ~ Group + Reference + habitat + OM + Pb + Mg,  random=~1 | id, data = df1) -> m1
-save(m1, file = "results/model/m1.RData")
+nlme::lme(Value ~ Group + Reference + habitat + Dim.1 + Dim.2 + Dim.3,  random=~1 | id, data = df1) -> m1
 summary(m1)
 nlme::anova.lme(m1)
 
